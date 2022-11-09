@@ -42,28 +42,8 @@ const HelpScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text style={styles.titleText}>
-          Sorry for the inconvinience Please contact us throgh whatsapp
+          Talk to our Financial Expert through whatsapp
         </Text>
-        {/* <TextInput
-          value={mobileNumber}
-          onChangeText={
-            (mobileNumber) => setMobileNumber(mobileNumber)
-          }
-          placeholder={'Enter WhatsApp Number'}
-          keyboardType="numeric"
-          style={styles.textInput}
-        />
-        <Text style={styles.titleTextsmall}>
-          WhatsApp Message
-        </Text>
-        <TextInput
-          value={whatsAppMsg}
-          onChangeText={
-            (whatsAppMsg) => setWhatsAppMsg(whatsAppMsg)
-          }
-          placeholder={'WhatsApp Message'}
-          style={styles.textInput}
-        /> */}
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.buttonStyle}

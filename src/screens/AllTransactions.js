@@ -7,13 +7,14 @@ import {Text} from 'react-native-elements'
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5'
 import firestore from '@react-native-firebase/firestore';
 
-const ProfileScreen = ({navigation}) => {
+const AllTransactions = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'All Transactions',
     })
   }, [])
   const [transactions, setTransactions] = useState([])
+
   useEffect(() => {
     const unsubscribe = firestore()
       .collection('expense')
@@ -26,10 +27,10 @@ const ProfileScreen = ({navigation}) => {
           }))
         )}
       )
-
     return unsubscribe
   }, [])
   const [filter, setFilter] = useState([])
+
   useEffect(() => {
     if (transactions) {
       setFilter(
@@ -39,14 +40,37 @@ const ProfileScreen = ({navigation}) => {
       )
     }
   }, [transactions])
+
   return (
     <>
-    <Text>Profile Screen</Text>
+      {filter?.length > 0 ? (
+        <SafeAreaView style={styles.container}>
+          
+          <ScrollView >
+            {filter?.map((info) => (
+              <View key={info.id}>
+                <CustomListItem
+                  info={info.data}
+                  navigation={navigation}
+                  id={info.id}
+                />
+              </View>
+            ))}
+          </ScrollView>
+        </SafeAreaView>
+      ) : (
+        <View style={styles.containerNull}>
+          <FontAwesome5 name='list-alt' size={24} color='#EF8A76' />
+          <Text h4 style={{color: '#4A2D5D'}}>
+            No Transactions
+          </Text>
+        </View>
+      )}
     </>
   )
 }
 
-export default ProfileScreen
+export default AllTransactions
 
 const styles = StyleSheet.create({
   container: {

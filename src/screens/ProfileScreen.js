@@ -7,7 +7,7 @@ import {Text} from 'react-native-elements'
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5'
 import firestore from '@react-native-firebase/firestore';
 
-const AllTransactions = ({navigation}) => {
+const ProfileScreen = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'All Transactions',
@@ -41,33 +41,18 @@ const AllTransactions = ({navigation}) => {
   }, [transactions])
   return (
     <>
-      {filter?.length > 0 ? (
-        <SafeAreaView style={styles.container}>
-          <ScrollView >
-            {filter?.map((info) => (
-              <View key={info.id}>
-                <CustomListItem
-                  info={info.data}
-                  navigation={navigation}
-                  id={info.id}
-                />
-              </View>
-            ))}
-          </ScrollView>
-        </SafeAreaView>
-      ) : (
-        <View style={styles.containerNull}>
-          <FontAwesome5 name='list-alt' size={24} color='#EF8A76' />
-          <Text h4 style={{color: '#4A2D5D'}}>
-            No Transactions
-          </Text>
-        </View>
-      )}
+    <View style={{flex:1,backgroundColor:'grey'}}>
+      <View style={styles.upperProfile}>
+        <Text style={{width:'100%',height:'100%',fontSize:35}}>
+          AZ
+        </Text>
+      </View>
+    </View>
     </>
   )
 }
 
-export default AllTransactions
+export default ProfileScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -81,4 +66,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  upperProfile:{
+    height:'30%',
+    width:'100%',
+    backgroundColor:'yellow'
+  }
 })

@@ -188,7 +188,7 @@ const RegisterScreen = ({navigation}) => {
             })
             .then(() => {
               setAnimating(false);
-              navigation.replace('LoginScreen');
+              navigation.replace('Login');
             })
             .catch(error => {
               alert(error);

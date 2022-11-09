@@ -7,6 +7,7 @@ import { StatusBar } from 'react-native'
 import AntDesign from 'react-native-vector-icons/dist/AntDesign'
 import Feather from 'react-native-vector-icons/dist/Feather'
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5'
+import Foundation from 'react-native-vector-icons/dist/Foundation'
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons'
 import firestore from '@react-native-firebase/firestore';
 import CustomListItem from '../components/CustomListItem'
@@ -232,9 +233,9 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.5}
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => navigation.navigate('Category')}
         >
-          <AntDesign name='user' size={24} color='#6ffa3c' />
+          <Foundation name='graph-pie' size={24} color='#6ffa3c' />
         </TouchableOpacity>
       </View>
     </>
