@@ -31,9 +31,6 @@ const Transactions = ({route,navigation}) => {
             }))
           )
         }
-        else{
-          console.log('snapshot',snapshot)
-        }
         }
       )
     return unsubscribe

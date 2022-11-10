@@ -170,7 +170,6 @@ const LoginScreen = ({navigation}) => {
     auth()
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then(user => {
-        console.log('user', user);
         // If server response message same as Data Matched
         if (user) navigation.replace('Home');
       })

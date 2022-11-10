@@ -68,7 +68,6 @@ function CategoryScreen({navigation}) {
   useEffect(() => {
     if (filteredTransaction) {
       const copyOfCategories = [...categories];
-      console.log('copuy',categories)
       copyOfCategories?.map((catItem, catIndex) => {
         filteredTransaction?.map((transItem, transIndex) => {
           if (transItem.data.category === catItem.name) {
@@ -82,7 +81,6 @@ function CategoryScreen({navigation}) {
               ? copyOfCategories[catIndex].totalTransactions + 1
               : 1;
           }
-          console.log('copy', categories);
         });
       });
 
@@ -93,7 +91,6 @@ function CategoryScreen({navigation}) {
   return (
     <View style={{flex: 1}}>
       {categories?.map(item => {
-        console.log('item.name',item.name)
         return <CategoryListItem onPress={()=>navigation.navigate("Transaction",{category:item.name})} data={item} />;
       })}
     </View>

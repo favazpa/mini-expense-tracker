@@ -11,10 +11,6 @@ const PieChart = ({categories, total}) => {
   const rupeesSymbol = '\u20B9';
   const gaugeText = `${total} ${rupeesSymbol}`;
 
-  useEffect(()=>{
-    console.log('selected',selectedCategory)
-  },[selectedCategory])
-
   function processCategoryDataToDisplay() {
     // Filter expenses with "Confirmed" status
     let chartData = categories.map((item) => {
@@ -35,7 +31,6 @@ const PieChart = ({categories, total}) => {
 
     let finalChartData = filterChartData.map((item) => {
         let percentage = item.percentage
-        console.log('per',item)
         return {
             label: `${percentage}%`,
             y: Number(item.y),
@@ -52,7 +47,6 @@ const PieChart = ({categories, total}) => {
 
 function setSelectCategoryByName(name) {
   let category = categories.filter(a => a.name == name)
-  console.log('c2',name)
   setSelectedCategory(name)
 }
 
@@ -62,9 +56,6 @@ function setSelectCategoryByName(name) {
     let chartData = processCategoryDataToDisplay()
     let colorScales = chartData.map((item) => item.color)
     let totalExpenseCount = chartData.reduce((a, b) => a + (b.expenseCount || 0), 0)
-
-    console.log("Check Chart")
-    console.log(chartData)
 
         // Android workaround by wrapping VictoryPie with SVG
         return (
@@ -95,7 +86,6 @@ function setSelectCategoryByName(name) {
                                         target: "labels",
                                         mutation: (props) => {
                                             let categoryName = chartData[props.index].name
-                                            console.log('c',categoryName)
                                             setSelectCategoryByName(categoryName)
                                         }
                                     }]

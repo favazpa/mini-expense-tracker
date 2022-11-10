@@ -10,6 +10,9 @@ import {Picker} from '@react-native-picker/picker'
 // import firebase from 'firebase'
 import firestore from '@react-native-firebase/firestore';
 import parse from 'date-fns/parse'
+import {Categories} from '../constants/categories';
+import { ScrollView } from 'react-native-gesture-handler'
+
 
 const UpdateScreen = ({route, navigation}) => {
   const [transactions, setTransactions] = useState([])
@@ -33,30 +36,27 @@ const UpdateScreen = ({route, navigation}) => {
           setSelDate(
             parse(snapshot.data()?.userDate, 'dd/MM/yyyy', new Date())
           ) &
-          setSelectedLanguage(snapshot.data()?.type)
+          setSelectedLanguage(snapshot.data()?.type) &
+          setSelectedCategory(snapshot.data()?.category)
+          
       )
     return unsubscribe
   }, [])
 
   const updateExpense = () => {
-    if (input && amount && selDate && selectedLanguage) {
       setSubmitLoading(true)
       firestore().collection('expense')
         .doc(itemId)
         .update({
           text: input,
-          price: amount,
+          price: Number(amount),
           date: selDate,
           type: selectedLanguage,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          category: selectedCategory,
           userDate: result,
         })
         .then(() => clearInputFields())
         .catch((error) => alert(error.message))
-    } else {
-      setSubmitLoading(false)
-      alert('All fields are mandatory')
-    }
   }
 
   const clearInputFields = () => {
@@ -65,6 +65,7 @@ const UpdateScreen = ({route, navigation}) => {
     setAmount('')
     setSelDate(new Date())
     setSelectedLanguage('expense')
+    setSelectedCategory('Food')
     navigation.goBack()
     setSubmitLoading(false)
   }
@@ -90,10 +91,12 @@ const UpdateScreen = ({route, navigation}) => {
 
   // Select Dropdown
   const [selectedLanguage, setSelectedLanguage] = useState()
+  const [selectedCategory, setSelectedCategory] = useState();
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.container}>
       <StatusBar style='dark' />
+      <ScrollView>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -133,6 +136,18 @@ const UpdateScreen = ({route, navigation}) => {
         </Text>
 
         <Picker
+          selectedValue={selectedCategory}
+          onValueChange={(itemValue, itemIndex) =>
+            setSelectedCategory(itemValue)
+          }>
+          {Categories.map((item, index) => {
+            return (
+              <Picker.Item key={index} label={item.name} value={item.name} />
+            );
+          })}
+        </Picker>
+
+        <Picker
           selectedValue={selectedLanguage}
           onValueChange={(itemValue, itemIndex) =>
             setSelectedLanguage(itemValue)
@@ -145,10 +160,12 @@ const UpdateScreen = ({route, navigation}) => {
         <Button
           containerStyle={styles.button}
           title='Update'
-          // onPress={updateExpense}
+          onPress={updateExpense}
           loading={submitLoading}
         />
       </View>
+      </ScrollView>
+     
     </KeyboardAvoidingView>
   )
 }
