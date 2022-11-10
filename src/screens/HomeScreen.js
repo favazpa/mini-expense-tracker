@@ -138,7 +138,7 @@ const HomeScreen = ({navigation}) => {
               Total Balance
             </Text>
             <Text h3 style={{textAlign: 'center', color: 'aliceblue'}}>
-              $ {totalBalance.toFixed(2)}
+              {'\u20B9'} {totalBalance.toFixed(2)}
             </Text>
           </View>
           <View style={styles.cardBottom}>
@@ -155,7 +155,7 @@ const HomeScreen = ({navigation}) => {
                 </Text>
               </View>
               <Text h4 style={{textAlign: 'center'}}>
-                {`$ ${income?.toFixed(2)}`}
+              {'\u20B9'} {`${income?.toFixed(2)}`}
               </Text>
             </View>
             <View>
@@ -166,7 +166,7 @@ const HomeScreen = ({navigation}) => {
                 </Text>
               </View>
               <Text h4 style={{textAlign: 'center'}}>
-                {`$ ${expense?.toFixed(2)}`}
+              {'\u20B9'} {` ${expense?.toFixed(2)}`}
               </Text>
             </View>
           </View>

@@ -1,19 +1,22 @@
 import React, {useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 import {ListItem, Text, Divider} from 'react-native-elements'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
 
 // import ModalActions from './ModalActions'
 
 const CategoryListItem = ({data, navigation}) => {
     // const [modalVisible, setModalVisible] = useState(false)
 
+    const color = data?.color
+
     return (
       <>
         <View>
-          <ListItem onPress={() => setModalVisible(true)}>
-              <View style={styles.income}>
-                <MaterialIcons name='attach-money' size={24} color='white' />
+          <ListItem >
+              <View style={[styles.income,{backgroundColor: color} ]}>
+                <MaterialCommunityIcons name={data.iconName} size={24} color='white' />
               </View>
             <ListItem.Content>
               <ListItem.Title
@@ -29,11 +32,11 @@ const CategoryListItem = ({data, navigation}) => {
             <View>
               {data.totalAmount < 0 ? (
                 <Text style={styles.right}>
-                  $ -{Number(data?.totalAmount)?.toFixed(2)}
+                  {'\u20B9'} -{Number(data?.totalAmount)?.toFixed(2)}
                 </Text>
               ) : (
                 <Text style={styles.rightIncome}>
-                  $ {Number(data?.totalAmount)?.toFixed(2)}
+                  {'\u20B9'} {Number(data?.totalAmount)?.toFixed(2)}
                 </Text>
               )}
             </View>

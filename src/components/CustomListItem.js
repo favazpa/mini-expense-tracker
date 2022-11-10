@@ -35,11 +35,11 @@ const CustomListItem = ({info, navigation, id}) => {
           <View>
             {info.type === 'expense' ? (
               <Text style={styles.right}>
-                $ -{Number(info?.price)?.toFixed(2)}
+                {'\u20B9'} -{Number(info?.price)?.toFixed(2)}
               </Text>
             ) : (
               <Text style={styles.rightIncome}>
-                $ {Number(info?.price)?.toFixed(2)}
+                {'\u20B9'} {Number(info?.price)?.toFixed(2)}
               </Text>
             )}
           </View>
