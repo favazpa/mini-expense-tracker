@@ -57,27 +57,28 @@ const AddScreen = ({navigation}) => {
           // }
           //         }
 
-          firestore()
-            .collection('Categories')
-            .where('userId', '==', auth().currentUser?.uid)
-            .where('name', '==', selectedCategory)
-            .update({
-              totalAmount: firestore.FieldValue.increment(Number(amount)),
-              totalTransactions: firestore.FieldValue.increment(1),
-            })
-            .then(() => clearInputFields())
-            .catch(error => {
-              firestore()
-                .collection('Categories')
-                .add({
-                  name: selectedCategory,
-                  totalAmount: amount,
-                  totalTransactions: 1,
-                  userId: auth().currentUser?.uid,
-                })
-                .then(() => clearInputFields())
-                .catch(error => alert(error.message));
-            }),
+          // firestore()
+          //   .collection('Categories')
+          //   .where('userId', '==', auth().currentUser?.uid)
+          //   .where('name', '==', selectedCategory)
+          //   .update({
+          //     totalAmount: firestore.FieldValue.increment(Number(amount)),
+          //     totalTransactions: firestore.FieldValue.increment(1),
+          //   })
+          //   .then(() => clearInputFields())
+          //   .catch(error => {
+          //     firestore()
+          //       .collection('Categories')
+          //       .add({
+          //         name: selectedCategory,
+          //         totalAmount: amount,
+          //         totalTransactions: 1,
+          //         userId: auth().currentUser?.uid,
+          //       })
+          //       .then(() => clearInputFields())
+          //       .catch(error => alert(error.message));
+          //   }),
+          navigation.goBack()
         )
         .catch(error => {
           alert(error.message);

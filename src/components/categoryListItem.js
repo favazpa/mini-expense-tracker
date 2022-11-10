@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 // import ModalActions from './ModalActions'
 
-const CategoryListItem = ({data, navigation}) => {
+const CategoryListItem = ({data,onPress, navigation}) => {
     // const [modalVisible, setModalVisible] = useState(false)
 
     const color = data?.color
@@ -14,7 +14,7 @@ const CategoryListItem = ({data, navigation}) => {
     return (
       <>
         <View>
-          <ListItem >
+          <ListItem onPress={onPress} >
               <View style={[styles.income,{backgroundColor: color} ]}>
                 <MaterialCommunityIcons name={data.iconName} size={24} color='white' />
               </View>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 import {ListItem, Text, Divider} from 'react-native-elements'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import ModalActions from './ModalActions'
 
@@ -14,7 +14,7 @@ const CustomListItem = ({info, navigation, id}) => {
         <ListItem onPress={() => setModalVisible(true)}>
           {info.type === 'expense' ? (
             <View style={styles.left}>
-              <MaterialIcons name='money-off' size={24} color='white' />
+              <FontAwesome name='rupee' size={24} color='white' />
             </View>
           ) : (
             <View style={styles.income}>
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   left: {
     backgroundColor: '#533461',
     borderRadius: 8,
-    padding: 10,
+    paddingHorizontal:20,
+    paddingVertical:15
   },
 
   income: {

@@ -7,29 +7,39 @@ import {Text} from 'react-native-elements'
 import FontAwesome5 from 'react-native-vector-icons/dist/FontAwesome5'
 import firestore from '@react-native-firebase/firestore';
 
-const TransactionScreen = ({navigation}) => {
+const Transactions = ({route,navigation}) => {
+
+  const { category } = route.params;
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'All Transactions',
+      title: 'Transactions',
     })
   }, [])
   const [transactions, setTransactions] = useState([])
+
   useEffect(() => {
-    const unsubscribe = firestore()
-      .collection('expense')
+    const unsubscribe = firestore().collection("expense")
+    .where("category", "==", category)
       .orderBy('date','desc')
       .onSnapshot((snapshot) =>{
-        setTransactions(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        )}
+        if(snapshot?.docs){
+          setTransactions(
+            snapshot?.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          )
+        }
+        else{
+          console.log('snapshot',snapshot)
+        }
+        }
       )
-
     return unsubscribe
   }, [])
   const [filter, setFilter] = useState([])
+
   useEffect(() => {
     if (transactions) {
       setFilter(
@@ -39,10 +49,12 @@ const TransactionScreen = ({navigation}) => {
       )
     }
   }, [transactions])
+
   return (
     <>
       {filter?.length > 0 ? (
         <SafeAreaView style={styles.container}>
+          
           <ScrollView >
             {filter?.map((info) => (
               <View key={info.id}>
@@ -67,7 +79,7 @@ const TransactionScreen = ({navigation}) => {
   )
 }
 
-export default TransactionScreen
+export default Transactions
 
 const styles = StyleSheet.create({
   container: {

@@ -1,4 +1,4 @@
-export const Categories = [
+export const  Categories = [
     {name:'Food',color:'black',iconName:'food',totalAmount:0,totalTransactions:0},
     {name:'Petrol',color:'yellow',iconName:'fuel',totalAmount:0,totalTransactions:0},
     {name:'Outfit',color:'cyan',iconName:'tshirt-crew',totalAmount:0,totalTransactions:0},
