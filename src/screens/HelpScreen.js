@@ -12,9 +12,9 @@ import {
 } from 'react-native';
  
 const HelpScreen = () => {
-  const [mobileNumber, setMobileNumber] = useState('9074791567');
+  const [mobileNumber, setMobileNumber] = useState('9207523938');
   const [whatsAppMsg, setWhatsAppMsg] = useState(
-    'Help',
+    'Hi, I would like to have some financial advice. Could you please help me out?',
   );
  
   const initiateWhatsApp = () => {
@@ -28,7 +28,7 @@ const HelpScreen = () => {
     let url =
       'whatsapp://send?text=' + 
        whatsAppMsg +
-      '&phone=34' + mobileNumber;
+      '&phone=91' + mobileNumber;
     Linking.openURL(url)
       .then((data) => {
         console.log('WhatsApp Opened');
